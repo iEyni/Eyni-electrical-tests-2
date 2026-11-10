@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Электрика с нуля · Уроки 22–23</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f6;--card:#fff;--ink:#14202e;--mute:#5a6878;--line:#c9d3de;--wire:#34465a;--amber:#f5a800;--tint:#e4ebf3;--blue:#2f6fde;--hot:#c4281c;--ok:#0f7a58;--warn:#c27a00;--brn:#8b5a2b;--pe:#3d9a3d;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1824;--card:#172333;--ink:#e8eef5;--mute:#9aabbd;--line:#2c3e53;--wire:#9fb4c9;--amber:#ffb81f;--tint:#1d2c3f;--blue:#6aa0ff;--hot:#ff7a6e;--ok:#4fd1a1;--warn:#ffb81f;--brn:#c58a50;--pe:#6fd36f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1824;--card:#172333;--ink:#e8eef5;--mute:#9aabbd;--line:#2c3e53;--wire:#9fb4c9;--amber:#ffb81f;--tint:#1d2c3f;--blue:#6aa0ff;--hot:#ff7a6e;--ok:#4fd1a1;--warn:#ffb81f;--brn:#c58a50;--pe:#6fd36f;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Onest,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.65;font-size:17px}
+main{max-width:920px;margin:0 auto;padding:20px 18px 70px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+nav a{padding:11px 16px;border-radius:12px;border:1.5px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600;background:var(--card)}
+nav a[aria-current="page"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+section[hidden]{display:none}
+section{--c:var(--amber)}
+.tag{color:var(--c);font-weight:600;margin:14px 0 6px}
+h1{font-size:clamp(30px,7vw,50px);line-height:1.05;font-weight:800;margin:0 0 14px;letter-spacing:-.02em}
+h2{font-size:26px;font-weight:800;margin:44px 0 10px}
+p{margin:0 0 14px;max-width:68ch}
+.lead{font-size:20px;color:var(--mute)}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin:20px 0}
+svg{display:block;width:100%;height:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+.ro{background:var(--tint);border-radius:14px;padding:12px 16px;border-left:6px solid var(--k,var(--c))}
+.ro span{display:block;color:var(--mute);font-size:15px}
+.ro b{display:block;font-size:clamp(20px,5vw,28px);line-height:1.15;font-weight:800}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.lbl{font-weight:600;margin:14px 0 4px}
+button{font:inherit;color:var(--ink);background:var(--tint);border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;min-height:46px}
+button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:disabled{opacity:.6;cursor:default}
+input[type=range]{width:100%;height:44px;accent-color:var(--amber)}
+input[type=text]{font:inherit;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;width:140px;min-height:46px}
+.sl label{display:flex;justify-content:space-between;font-weight:600}
+.box{border-radius:14px;padding:14px 18px;font-weight:600;font-size:18px;margin:12px 0;border:2px solid var(--line)}
+.box.ok{border-color:var(--ok);color:var(--ok)}.box.no{border-color:var(--hot);color:var(--hot)}.box.wn{border-color:var(--warn);color:var(--warn)}
+.rule{border-left:5px solid var(--amber);padding:4px 0 4px 16px;margin:20px 0;font-weight:600;font-size:19px}
+.ex{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:14px;padding:14px 18px;margin:14px 0}
+.ex h3{margin:0 0 6px;font-size:19px}.ex p{margin:0 0 8px}.ex p:last-child{margin:0}.ex ul{margin:0;padding-left:22px}
+.step{display:grid;grid-template-columns:44px 1fr;gap:10px;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:14px;padding:12px 16px;margin:10px 0}
+.sn{font-weight:800;font-size:26px;color:var(--c)}
+.sf{font-weight:600;background:var(--tint);border-radius:8px;padding:6px 10px;margin:4px 0;overflow-wrap:anywhere}
+.step small{color:var(--mute);font-size:15px;display:block}
+.cq{font-weight:600;font-size:19px}
+.fb{font-weight:600;min-height:1.6em}.fb.ok{color:var(--ok)}.fb.no{color:var(--hot)}
+.t{fill:var(--ink);font-size:14px;font-family:inherit}.m{fill:var(--mute);font-size:12px;font-family:inherit}
+.done{width:100%;font-weight:800;font-size:18px;margin-top:24px}
+.sum{background:var(--tint);border-radius:14px;padding:12px 18px;margin:16px 0;font-weight:600}
+.tab{width:100%;border-collapse:collapse;margin:10px 0}.tab th,.tab td{border:1px solid var(--line);padding:8px 10px;text-align:left}.tab th{background:var(--tint)}
+</style>
+</head>
+<body>
+<main>
+<nav aria-label="Уроки"><a href="https://claude.ai/artifact/AhQZ4JSDGr7aZRGrSTdZXh" target="_blank" rel="noopener">← К курсу</a><a href="#lesson-22" id="n22">🏠 22 · Заземление</a><a href="#lesson-23" id="n23">🏠 23 · Розетки</a></nav>
+
+<section id="L22">
+<p class="tag">🏠 Домашняя проводка · Урок 22</p>
+<h1>Заземление и системы питания</h1>
+<p class="lead">Заземление даёт опасному току безопасный путь, а защита отключает линию. Но всё зависит от схемы, по которой питается дом. Разберём три основные.</p>
+<div class="ex"><h3>🎯 Что ты узнаешь</h3><ul><li>Чем отличаются TN-C, TN-S и TT.</li><li>Почему нельзя использовать нулевой провод как землю.</li><li>Какую защиту нужно ставить в каждой системе.</li></ul></div>
+<h2>Три схемы питания</h2>
+<div class="grid">
+<div class="ex" style="margin:0"><h3>TN-C</h3><p>Один общий провод PEN работает и нулём, и землёй. Так делали в старых домах. Корпуса приборов «занулены».</p></div>
+<div class="ex" style="margin:0"><h3>TN-S / TN-C-S</h3><p>Ноль N и защитный провод PE идут отдельно. Современный подход: у розетки три провода.</p></div>
+<div class="ex" style="margin:0"><h3>TT</h3><p>У дома свой заземлитель (контур в земле). Часто в частных домах и на воздушных линиях. Нужно УЗО.</p></div>
+</div>
+<h2>Модель: что будет при аварии</h2>
+<div class="ex"><h3>💡 Простыми словами</h3><p>Если фаза попала на корпус, по пути «фаза → корпус → защитный провод → источник» пойдёт большой ток. Чем меньше сопротивление этого пути (петли), тем больше ток и тем быстрее автомат выбьет. Выбери схему, сценарий и сопротивление.</p></div>
+<div class="stage">
+<div class="lbl">Система питания</div><div class="row" id="sy"></div>
+<div class="lbl">Что происходит</div><div class="row" id="sn"></div>
+<div class="row"><button id="uz" aria-pressed="false">🧲 УЗО 30 мА установлено</button></div>
+<svg viewBox="0 0 760 300" role="img" aria-label="Схема питания дома: подстанция, провода и прибор с корпусом"><g id="sg"></g></svg>
+<div class="sl"><label for="rr"><span id="rl"></span><span id="rv"></span></label><input id="rr" type="range" min="3" max="30" value="10"></div>
+<div class="grid"><div class="ro" id="g1"><span>Ток замыкания</span><b id="o1"></b></div><div class="ro" id="g2"><span>Что сработает</span><b id="o2" style="font-size:19px"></b></div><div class="ro" id="g3"><span>Напряжение на корпусе</span><b id="o3"></b></div></div>
+<div class="box" id="mm" aria-live="polite"></div>
+<div id="st"></div>
+</div>
+<div class="rule">Безопасность = маленькое сопротивление петли + защита, которая успеет сработать (автомат или УЗО).</div>
+<div class="ex"><h3>🏠 Пример из жизни</h3><p>В старой квартире с двухпроводной проводкой «земля» — это ноль, и если он обгорит в щитке, на корпусах техники окажется напряжение. Поэтому новую проводку делают с отдельным защитным проводом PE и ставят УЗО.</p></div>
+<div class="ex"><h3>⚠️ Важно</h3><p>Нельзя «сделать заземление» от нулевого провода или водопроводной трубы самому. Обустройство заземления — работа для специалиста по нормам твоей страны. Цифры в модели учебные.</p></div>
+<div class="sum">📌 Итог: TN-C — общий PEN, TN-S — отдельные N и PE, TT — свой заземлитель и обязательное УЗО. Ноль нельзя использовать как землю.</div>
+<h2>Миф или факт?</h2><div class="stage" id="my"></div>
+<h2>Задача</h2><div class="stage" id="chl"></div>
+<button class="done" id="dn" aria-pressed="false">☐ Отметить урок пройденным</button>
+</section>
+
+<section id="L23" hidden>
+<p class="tag">🏠 Домашняя проводка · Урок 23</p>
+<h1>Розетки: подключение и проверка</h1>
+<p class="lead">В розетке три контакта: фаза, ноль и земля. Если перепутать провода, прибор может работать, но быть смертельно опасным. Подключи розетку в модели и проверь мультиметром.</p>
+<div class="ex"><h3>🎯 Что ты узнаешь</h3><ul><li>Какой провод куда подключается и как это проверить.</li><li>К чему приводит путаница фазы, нуля и земли.</li><li>Безопасный порядок замены розетки и расчёт нагрузки линии.</li></ul></div>
+<h2>Три контакта</h2>
+<div class="grid">
+<div class="ex" style="margin:0;--c:var(--brn)"><h3>🟤 Фаза L</h3><p>Рабочий провод под напряжением 230 В относительно земли.</p></div>
+<div class="ex" style="margin:0;--c:var(--blue)"><h3>🔵 Ноль N</h3><p>Возвращает рабочий ток, около 0 В относительно земли.</p></div>
+<div class="ex" style="margin:0;--c:var(--pe)"><h3>💚💛 Земля PE</h3><p>Защитный: соединяет корпуса приборов с заземлением.</p></div>
+</div>
+<h2>Подключи розетку</h2>
+<div class="ex"><h3>💡 Простыми словами</h3><p>В розетку приходят три провода. Нажимай кнопки «поменять местами» и смотри, что покажет мультиметр между клеммами. В правильной схеме: L–N 230 В, L–PE 230 В, N–PE около 0 В.</p></div>
+<div class="stage">
+<svg viewBox="0 0 760 270" role="img" aria-label="Розетка с тремя клеммами и подключёнными проводами"><g id="sk"></g></svg>
+<div class="row" id="sw"></div>
+<div class="grid" id="rd"></div>
+<div class="box" id="dg" aria-live="polite"></div>
+</div>
+<div class="rule">Фаза — на фазную клемму, ноль — на нулевую, земля — на защитную. Всегда проверяй результат мультиметром.</div>
+<h2>Порядок замены розетки</h2>
+<div class="stage" id="ord"></div>
+<h2>Сколько вешать на линию</h2>
+<div class="ex"><h3>💡 Простыми словами</h3><p>Розеточная линия имеет ограничение по току: автомат и кабель. Сложи мощности приборов и проверь.</p></div>
+<div class="stage" id="ld"></div>
+<div class="sum">📌 Итог: L — фазная клемма, N — нулевая, PE — защитная. Фаза на PE смертельно опасна. После монтажа проверь напряжения мультиметром, а замену делай по порядку «отключил → проверил → работаешь».</div>
+<h2>Миф или факт?</h2><div class="stage" id="my2"></div>
+<h2>Задача</h2><div class="stage" id="ch2"></div>
+<button class="done" id="dn2" aria-pressed="false">☐ Отметить урок пройденным</button>
+</section>
+</main>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},NS="http://www.w3.org/2000/svg";
+var f=function(n,d){return n.toLocaleString("ru-RU",{maximumFractionDigits:d===undefined?2:d})};
+var pick=function(a){return a[Math.floor(Math.random()*a.length)]};
+function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+function challenge(box,gen){var t;
+function nw(){t=gen();box.innerHTML='<p class="cq">'+t.q+'</p><div class="row"><input type="text" inputmode="decimal" aria-label="Ответ"><b>'+t.unit+'</b><button class="go">Проверить</button><button class="nw">Новая задача</button></div><p class="fb" aria-live="polite"></p>';
+var inp=box.querySelector("input"),fb=box.querySelector(".fb");
+function chk(){var v=parseFloat(inp.value.replace(",",".").replace(/\s/g,""));if(isNaN(v)){fb.className="fb no";fb.textContent="Введи число.";return}
+var ok=Math.abs(v-t.a)<=Math.max(0.02*Math.abs(t.a),0.01);fb.className="fb "+(ok?"ok":"no");fb.textContent=(ok?"✅ Верно. ":"❌ Неверно, правильный ответ "+f(t.a,3)+". ")+t.s}
+box.querySelector(".go").onclick=chk;inp.onkeydown=function(e){if(e.key==="Enter")chk()};box.querySelector(".nw").onclick=nw}
+nw()}
+function steps(box,list){box.innerHTML=list.map(function(s,i){return '<div class="step"><div class="sn">'+(i+1)+'</div><div><b>'+s[0]+'</b><div class="sf">'+s[1]+'</div><small>'+s[2]+'</small></div></div>'}).join("")}
+function myth(box,list){var i=0,sc=0;
+function show(){if(i>=list.length){box.innerHTML='<p class="cq">Готово: '+sc+' из '+list.length+' верно.</p><button class="rs">Сыграть ещё раз</button>';box.querySelector(".rs").onclick=function(){i=0;sc=0;show()};return}
+var q=list[i];box.innerHTML='<p class="cq">'+(i+1)+'. '+q[0]+'</p><div class="row"><button data-a="1">✅ Факт</button><button data-a="0">❌ Миф</button></div><p class="fb" aria-live="polite"></p>';
+box.querySelectorAll("button[data-a]").forEach(function(b){b.onclick=function(){var ok=(b.dataset.a==="1")===q[1];if(ok)sc++;var fb=box.querySelector(".fb");fb.className="fb "+(ok?"ok":"no");fb.textContent=(ok?"✅ Верно. ":"❌ Не совсем. ")+q[2];box.querySelectorAll("button[data-a]").forEach(function(x){x.disabled=true});var n=document.createElement("button");n.textContent="Дальше →";n.onclick=function(){i++;show()};box.querySelector(".row").appendChild(n)}})}
+show()}
+function done(btn,key){var mem=false;function get(){try{return localStorage.getItem(key)==="1"}catch(e){return mem}}
+function ren(){var d=get();btn.setAttribute("aria-pressed",String(d));btn.textContent=d?"✅ Урок пройден (нажми, чтобы снять отметку)":"☐ Отметить урок пройденным"}
+btn.onclick=function(){var d=!get();try{localStorage.setItem(key,d?"1":"0")}catch(e){}mem=d;ren()};ren()}
+function tg(box,arr,fn,lab){arr.forEach(function(x,i){var b=document.createElement("button");b.textContent=lab(x);b.dataset.i=i;b.onclick=function(){fn(i)};box.appendChild(b)})}
+function pr(box,i){box.querySelectorAll("button").forEach(function(b){b.setAttribute("aria-pressed",String(+b.dataset.i===i))})}
+
+/* Урок 22 */
+var SY=[["TN-C","TN-C (старая, PEN)"],["TN-S","TN-S (отдельные N и PE)"],["TT","TT (свой заземлитель)"]],SN=["Норма","⚡ Пробой фазы на корпус","✂️ Обрыв нуля"],A={s:1,n:1,u:false};
+tg($("sy"),SY,function(i){A.s=i;var r=$("rr");if(i===2){r.min=5;r.max=100;r.value=30}else{r.min=3;r.max=30;r.value=10}up()},function(x){return x[1]});tg($("sn"),SN,function(i){A.n=i;up()},function(x){return x});
+$("uz").onclick=function(){A.u=!A.u;up()};
+function up(){var s=A.s,n=A.n,v=+$("rr").value,tt=s===2,RA=4,Rl=tt?RA+v+0.5:0.2+v/10,I=230/Rl;
+pr($("sy"),s);pr($("sn"),n);$("uz").setAttribute("aria-pressed",String(A.u));
+$("rl").textContent=tt?"Сопротивление заземлителя дома":"Сопротивление петли фаза–защитный провод";$("rv").textContent=f(tt?v:Rl,1)+" Ом";
+var g=$("sg");g.innerHTML="";var fault=n===1,cut=n===2;
+el("rect",{x:20,y:80,width:110,height:130,rx:12,fill:"var(--tint)",stroke:"var(--wire)","stroke-width":4},g);el("text",{x:75,y:150,"text-anchor":"middle",class:"t","font-weight":800},g).textContent="Подстанция";
+el("path",{d:"M130 100H560",stroke:"var(--brn)","stroke-width":7,fill:"none"},g);el("text",{x:340,y:92,"text-anchor":"middle",class:"m"},g).textContent="фаза L";
+el("path",{d:"M130 140H"+(cut?300:560),stroke:"var(--blue)","stroke-width":7,fill:"none"},g);if(cut){el("path",{d:"M340 140H560",stroke:"var(--blue)","stroke-width":7,fill:"none"},g);el("text",{x:320,y:146,"text-anchor":"middle","font-size":22},g).textContent="✂️"}
+el("text",{x:340,y:132,"text-anchor":"middle",class:"m"},g).textContent=s===0?"PEN (ноль и земля вместе)":"ноль N";
+if(s===1)el("path",{d:"M130 180H560",stroke:"var(--pe)","stroke-width":7,"stroke-dasharray":"16 8",fill:"none"},g);if(s===1)el("text",{x:340,y:172,"text-anchor":"middle",class:"m"},g).textContent="защитный PE";
+el("rect",{x:560,y:60,width:170,height:150,rx:16,fill:fault&&!(s===2&&A.u)?"var(--hot)":"var(--tint)","fill-opacity":fault?.2:1,stroke:"var(--wire)","stroke-width":5},g);el("text",{x:645,y:50,"text-anchor":"middle",class:"t"},g).textContent="Корпус прибора";
+el("circle",{cx:645,cy:135,r:30,fill:"none",stroke:"var(--wire)","stroke-width":3},g);el("text",{x:645,y:140,"text-anchor":"middle",class:"m"},g).textContent="мотор";
+if(s===0)el("path",{d:"M560 140H530",stroke:"var(--blue)","stroke-width":5},g);
+if(s===1)el("path",{d:"M560 180H540",stroke:"var(--pe)","stroke-width":5},g);
+if(tt){el("path",{d:"M645 210V262",stroke:"var(--pe)","stroke-width":5},g);el("text",{x:645,y:282,"text-anchor":"middle","font-size":22},g).textContent="⏚";el("text",{x:75,y:262,"text-anchor":"middle","font-size":22},g).textContent="⏚";el("path",{d:"M95 255H625",stroke:"var(--mute)","stroke-width":3,"stroke-dasharray":"4 6"},g);el("text",{x:360,y:250,"text-anchor":"middle",class:"m"},g).textContent="земля (сопротивление контура)"}
+if(fault){el("text",{x:600,y:100,"font-size":26},g).textContent="⚡";el("path",{d:s===0?"M560 100H600M600 100V140H560":s===1?"M600 105V180H560":"M600 105V235",stroke:"var(--hot)","stroke-width":4,"stroke-dasharray":"7 6",fill:"none"},g)}
+var res,who,vt,cls,txt;
+if(n===0){res="—";who="Всё в норме";vt="0 В";cls="ok";txt="✅ Нормальный режим: корпус без напряжения."}
+else if(n===2){res="—";if(s===0){who="Ничего не отключится";vt="≈ 230 В";cls="no";txt="❌ В TN-C корпус соединён с нулём. Ноль оборвался, и на корпусах оказалось опасное напряжение. Поэтому нужен отдельный защитный провод PE."}else{who="Прибор не работает";vt="0 В";cls="ok";txt="✅ Нуль оборван, но защитный провод отдельный: корпус остаётся без напряжения. Прибор просто не включится."}}
+else{var inst=I>=160,may=I>=80&&I<160,uz=A.u&&tt;res=f(I,0)+" А";
+if(tt){vt=f(I*v,0)+" В";if(uz){who="УЗО 30 мА";cls="ok";txt="✅ Ток замыкания "+f(I,1)+" А слишком мал для автомата, но УЗО замечает утечку и отключает линию. Напряжение прикосновения исчезает."}else{who="Ничего не сработает вовремя";cls="no";txt="❌ В системе TT ток замыкания всего "+f(I,1)+" А: автомат не отключится, а корпус остаётся под опасным напряжением ≈ "+f(I*v,0)+" В. Нужно УЗО."}}
+else{vt="≈ "+f(I*0.3,0)+" В (до отключения)";if(inst){who="Автомат (мгновенно)";cls="ok";txt="✅ Ток "+f(I,0)+" А выше порога срабатывания автомата C16 (около 160 А): линия отключится за доли секунды."}else if(may){who="Автомат (может не сразу)";cls="wn";txt="⚠️ Ток "+f(I,0)+" А в зоне неопределённости срабатывания: автомат может отключить не мгновенно. Сопротивление петли слишком велико."}else{who="Автомат не успеет";cls="no";txt="❌ Ток "+f(I,0)+" А слишком мал для мгновенного срабатывания. Нужно снизить сопротивление петли или поставить УЗО."}}}
+$("o1").textContent=res;$("o2").textContent=who;$("o3").textContent=vt;["g1","g2","g3"].forEach(function(id){$(id).style.setProperty("--k",cls==="ok"?"var(--ok)":cls==="wn"?"var(--warn)":"var(--hot)")});
+var b=$("mm");b.className="box "+cls;b.textContent=txt;
+steps($("st"),n===1?[["Сопротивление петли","R = "+(tt?"R_A + R_B + R_провода = 4 + "+v+" + 0,5 = "+f(Rl,1):"R_фаза + R_защитный = "+f(Rl,1))+" Ом","Путь тока: фаза → корпус → "+(tt?"земля → источник.":"защитный провод → источник.")],["Ток замыкания","I = U / R = 230 / "+f(Rl,1)+" = "+f(I,1)+" А","Закон Ома: чем меньше R, тем больше ток."],["Что сработает","Автомат C16 мгновенно от ≈ 160 А (в зоне 80–160 А — как повезёт)",tt?"В TT тока обычно мало, поэтому нужно УЗО.":"В TN малое R даёт большой ток, и автомат отключает быстро."]]:[["Выбери сценарий «Пробой фазы на корпус»","Тогда появится расчёт по шагам","Сейчас авария не моделируется."]])}
+$("rr").oninput=up;up();
+myth($("my"),[["Нулевой провод можно использовать вместо заземления.",false,"Ноль несёт рабочий ток и может оборваться. Защитный провод должен быть отдельным."],["В системе TT без УЗО авария может остаться без отключения.",true,"Ток замыкания через землю мал, автомат не срабатывает."],["Чем меньше сопротивление петли фаза–ноль, тем быстрее срабатывает автомат.",true,"Ток замыкания растёт, поэтому магнитная защита срабатывает мгновенно."]]);
+challenge($("chl"),function(){var m=Math.floor(Math.random()*2),R=pick([0.5,0.8,1,2]);
+if(m===0)return{q:"Сопротивление петли фаза–защитный провод "+R+" Ом, напряжение 230 В. Каков ток замыкания?",unit:"А",a:230/R,s:"I = 230 / "+R+" = "+f(230/R,1)+" А."};
+var RB=pick([10,20,30]);return{q:"Система TT: сопротивление источника заземления 4 Ом, заземлителя дома "+RB+" Ом, провода 0,5 Ом. Каков ток замыкания?",unit:"А",a:230/(4+RB+0.5),s:"R = 4 + "+RB+" + 0,5 = "+(4.5+RB)+" Ом; I = 230 / "+(4.5+RB)+" = "+f(230/(4.5+RB),2)+" А."}});
+done($("dn"),"ek-done-22");
+
+/* Урок 23 */
+var CN=[["Фаза L","var(--brn)"],["Ноль N","var(--blue)"],["Земля PE","var(--pe)"]],TM=["L (фазная клемма)","N (нулевая клемма)","⏚ PE (защитная клемма)"],P=[0,1,2],VV=[[0,230,230],[230,0,0],[230,0,0]];
+function vc(a,b){if(a===b)return 0;var s=[a,b].sort().join("");return s==="01"||s==="02"?230:2}
+var SW=[[0,1,"L↔N"],[1,2,"N↔PE"],[0,2,"L↔PE"]];
+SW.forEach(function(w,i){var b=document.createElement("button");b.textContent="Поменять "+w[2];b.onclick=function(){var t=P[w[0]];P[w[0]]=P[w[1]];P[w[1]]=t;up2()};$("sw").appendChild(b)});
+var rb=document.createElement("button");rb.textContent="Сбросить";rb.onclick=function(){P=[0,1,2];up2()};$("sw").appendChild(rb);
+function up2(){var g=$("sk");g.innerHTML="";el("rect",{x:300,y:30,width:160,height:210,rx:22,fill:"var(--tint)",stroke:"var(--wire)","stroke-width":5},g);
+for(var i=0;i<3;i++){var y=70+i*60,c=CN[P[i]];el("circle",{cx:380,cy:y,r:16,fill:"var(--card)",stroke:"var(--wire)","stroke-width":4},g);el("text",{x:380,y:y+5,"text-anchor":"middle",class:"t","font-weight":800},g).textContent=["L","N","⏚"][i];el("path",{d:"M60 "+y+"H364",stroke:c[1],"stroke-width":8,"stroke-linecap":"round",fill:"none"},g);el("text",{x:60,y:y-12,class:"t",fill:c[1]},g).textContent=c[0];el("text",{x:480,y:y+5,class:"m"},g).textContent=TM[i]}
+var pairs=[[0,1],[0,2],[1,2]],rd=$("rd");rd.innerHTML="";var good=P[0]===0&&P[1]===1&&P[2]===2,names=["L–N","L–PE","N–PE"],exp=[230,230,2];
+pairs.forEach(function(p,k){var v=vc(P[p[0]],P[p[1]]),ok=Math.abs(v-exp[k])<30,d=document.createElement("div");d.className="ro";d.style.setProperty("--k",ok?"var(--ok)":"var(--hot)");d.innerHTML="<span>V~ между клеммами "+names[k]+"</span><b>"+(v>100?"230 В":"≈ 0 В")+"</b>";rd.appendChild(d)});
+var m=$("dg"),k=P.join("");
+var msg={"012":["ok","✅ Всё верно. L–N и L–PE по 230 В, N–PE около 0. Розетку можно включать."],"102":["wn","⚠️ Фаза и ноль поменяны. Приборы работают, но выключатель разрывает ноль, и фаза остаётся внутри «выключенного» прибора. Исправь полярность."],"021":["no","❌ Ноль и земля поменяны. Рабочий ток идёт по защитному проводу, УЗО будет отключаться, а корпуса приборов окажутся на проводе с током."],"210":["no","⛔ Смертельно опасно: на защитном контакте оказалась фаза. Корпуса приборов могут быть под 230 В. Не включай, переподключи."]}[k]||["no","❌ Провода перепутаны: на клеммах неправильные проводники. Перепроверь и подключи по схеме L, N, PE."];
+m.className="box "+msg[0];m.textContent=msg[1]}
+up2();
+(function(){var box=$("ord"),ST=["Отключи автомат линии","Проверь индикатором, что напряжения нет","Снимай старую розетку и подписывай провода","Подключи L, N, PE, затяни клеммы","Включи и проверь мультиметром"],pos,idx;
+function nw(){pos=ST.map(function(_,i){return i}).sort(function(){return Math.random()-.5});idx=0;box.innerHTML='<p class="cq">Нажимай шаги в правильном порядке.</p><div class="row" id="oo"></div><p class="fb" aria-live="polite"></p><div class="row"><button class="nw">Перемешать</button></div>';
+pos.forEach(function(p){var b=document.createElement("button");b.textContent=ST[p];b.onclick=function(){var fb=box.querySelector(".fb");if(p===idx){idx++;b.disabled=true;b.textContent="✅ "+idx+". "+ST[p];fb.className="fb ok";fb.textContent=idx===ST.length?"🎉 Верный порядок!":"Верно, дальше."}else{fb.className="fb no";fb.textContent="❌ Сейчас шаг: «"+ST[idx]+"»."}};box.querySelector("#oo").appendChild(b)});box.querySelector(".nw").onclick=nw}nw()})();
+var DV=[["🫖","Чайник",2000],["🔥","Обогреватель",2000],["🍲","СВЧ",1200],["🧺","Стиралка",2200],["💡","Свет",100]],OD=[0,0,0,0,0],BRK=[10,16,25],bi=1;
+function up3(){var P=0;OD.forEach(function(o,i){if(o)P+=DV[i][2]});var I=P/230,B=BRK[bi],b=$("ld");
+b.innerHTML='<div class="row" id="dr"></div><div class="row" id="br"></div><div class="grid"><div class="ro" style="--k:var(--amber)"><span>Мощность</span><b>'+f(P,0)+' Вт</b></div><div class="ro" style="--k:var(--blue)"><span>Ток</span><b>'+f(I,1)+' А</b></div></div><div class="box '+(I>B?"no":I>B*.8?"wn":"ok")+'">'+(I>B?"❌ Ток "+f(I,1)+" А выше автомата "+B+" А: линия отключится.":I>B*.8?"⚠️ Нагрузка близка к пределу автомата "+B+" А.":"✅ Нагрузка в норме для автомата "+B+" А.")+'</div>';
+DV.forEach(function(d,i){var x=document.createElement("button");x.textContent=d[0]+" "+d[1]+" "+d[2]+" Вт";x.setAttribute("aria-pressed",String(!!OD[i]));x.onclick=function(){OD[i]=OD[i]?0:1;up3()};$("dr").appendChild(x)});
+BRK.forEach(function(v,i){var x=document.createElement("button");x.textContent="Автомат "+v+" А";x.setAttribute("aria-pressed",String(i===bi));x.onclick=function(){bi=i;up3()};$("br").appendChild(x)})}
+up3();
+myth($("my2"),[["Если фаза и ноль в розетке перепутаны, прибор не заработает.",false,"Он обычно работает, но опасен: выключатель разрывает ноль, фаза остаётся внутри."],["На защитный контакт нельзя подавать фазу.",true,"Тогда корпуса приборов оказываются под напряжением: смертельная опасность."],["Мультиметр после монтажа не нужен, если провода по цветам.",false,"Цвета в старых проводках бывают неверными. Проверяй напряжения L–N, L–PE и N–PE."]]);
+challenge($("ch2"),function(){var m=Math.floor(Math.random()*2),P=pick([1500,2000,3000,3500]);
+if(m===0)return{q:"К розеточной линии подключены приборы суммарно "+P+" Вт, сеть 230 В. Какой ток?",unit:"А",a:P/230,s:"I = "+P+" / 230 = "+f(P/230,2)+" А."};
+return{q:"Автомат 16 А, сеть 230 В. Сколько приборов по 2000 Вт можно включить одновременно, не выбивая автомат (целое число)?",unit:"шт",a:1,s:"Мощность линии: 16 × 230 = 3680 Вт, два прибора дадут 4000 Вт, поэтому максимум 1."}});
+done($("dn2"),"ek-done-23");
+
+function route(){var n=location.hash==="#lesson-23"?23:22;[22,23].forEach(function(k){$("L"+k).hidden=k!==n;if(k===n)$("n"+k).setAttribute("aria-current","page");else $("n"+k).removeAttribute("aria-current")});window.scrollTo(0,0)}
+window.addEventListener("hashchange",route);route();
+})();
+</script>
+</body>
+</html>
